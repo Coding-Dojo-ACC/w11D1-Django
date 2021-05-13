@@ -19,4 +19,8 @@ urlpatterns = [
     path('<int:employee_id>/editEmployee/', views.editEmployee),
     path('<int:employee_id>/updateEmployee/', views.updateEmployee),
     path('<int:employee_id>/deleteEmployee/', views.deleteEmployee),
+    path('theShops/', views.allShops),
+    path('createShop/', views.createShop),
+    path('<int:zoo_id>/', views.zoo),
+    path('<int:zoo_id>/addShop/', views.addShop),
 ]

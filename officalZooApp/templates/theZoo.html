@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zoo Home</title>
+    <title>{{theZoo.zooName}} Details</title>
     {% load static %}
     <link rel='stylesheet' href="{% static 'css/officialStyles.css' %}">
 </head>
 <body>
     <header>
-        <h1>Welcome to the Official Zoo App</h1>
         <nav>
             <a href='/'>Website Home</a>
             <a href='/zoo/'>Zoo Home</a>
@@ -21,20 +20,26 @@
         </nav>
     </header>
     <div class='main'>
-        <h2>Amazon Career Choice Zoo Organization</h2>
-        <p>In the Navigation you can add your Zoo to our Organization add your animals and employees</p>
-        <p>Below you can view the details of each Zoo with in our Organization</p>
-        <h3>Click on a Zoo to view the details.</h3>
-        <div class='all'>
-            {% for zoo in zoos %}
+        <h1>The {{theZoo.zooName}}</h1>
+        <h3>Animals Currently at the {{theZoo.zooName}}</h3>
+        <section class='all'>
+            {% for animal in theAnimals %}
             <section class='one'>
-                <a href='/zoo/{{zoo.id}}'>{{zoo.zooName}}</a>
+                <h4>{{animal.animalName}}</h4>
+                <h5>{{animal.animalType}}</h5>
+                <h5>{{animal.animalBirth}}</h5>
             </section>
             {% endfor %}
-        </div>
+        </section>
+        <h3>{{theZoo.zooName}}'s Current Rock Star Employee's</h3>
+        <section class='all'>
+            {% for employee in theEmployees %}
+            <section class='one'>
+                <h4>{{employee.firstName}} {{employee.lastName}}</h4>
+                <h5>Contact email for {{employee.firstName}}: {{employee.email}}</h5>
+            </section>
+            {% endfor %}
+        </section>
     </div>
-    <footer>
-
-    </footer>
 </body>
 </html>

@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from .models import *
 
 def officialZoo(request):
-    return render(request, 'officialZoo.html')
+    context = {
+        'zoos': Zoo.objects.all().values()
+    }
+    return render(request, 'officialZoo.html', context)
 
 
 # Landing page to view zoos
@@ -137,3 +140,33 @@ def deleteEmployee(request, employee_id):
     toDelete.delete()
 
     return redirect('/zoo/theEmployees/')
+
+def allShops(request):
+    context = {
+        'shops': Shop.objects.all()
+    }
+    return render(request, 'allShops.html', context)
+
+def createShop(request):
+    Shop.objects.create(
+        shopName=request.POST['shopName'],
+        shopDescription=request.POST['shopDescription'],
+    )
+    return redirect('/zoo/theShops')
+
+
+
+def addShop(request, zoo_id):
+    zoo = Zoo.objects.get(id=zoo_id)
+    theShop = Shop.objects.get(id=request.POST['shop_id'])
+    zoo.shops.add(theShop)
+    return redirect('/zoo/theZoos/')
+
+def zoo(request, zoo_id):
+    zoo = Zoo.objects.get(id=zoo_id)
+    context = {
+        'theZoo': zoo,
+        'theAnimals': Animal.objects.exclude(zoo_id=zoo_id),
+        'theEmployees': Employee.objects.exclude(zoo_id=zoo_id),
+    }
+    return render(request, 'theZoo.html', context)

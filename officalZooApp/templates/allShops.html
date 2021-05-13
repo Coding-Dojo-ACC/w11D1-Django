@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Zoos</title>
+    <title>The Shops</title>
     {% load static %}
     <link rel='stylesheet' href="{% static 'css/officialStyles.css' %}">
 </head>
@@ -20,34 +20,29 @@
         </nav>
     </header>
     <div class='main'>
-        <h3>Here is a list of all our Zoo's</h3>
         <div class='all'>
-            {% for zoo in zoos %}
+            {% for shop in shops %}
             <section class='one'>
-                <h4>{{zoo.zooName}}</h4>
-                <h5>{{zoo.zooLocation}}</h5>
-                <a href='/zoo/{{zoo.id}}/editZoo/'>Edit Zoo</a>
-                <a href='/zoo/{{zoo.id}}/addShop/'>Add Shops to Zoo</a>
+                <h4>{{shop.shopName}}</h4>
+                <p>{{shop.shopDescription}}</p>
+                <a href='/zoo/{{shop.id}}/editShop'>Edit Shop</a>
             </section>
             {% endfor %}
         </div>
         <div class='add'>
-            <form action='/zoo/createZoo/' method='post'>
+            <form action='/zoo/createShop/' method='post'>
                 {% csrf_token %}
                 <section class='row'>
-                    <label for='zooName'>Name of Zoo: </label>
-                    <input type='text' id='zooName' name='zooName'>
+                    <label for='shopName'>Shop Name: </label>
+                    <input type='text' id='shopName' name='shopName'>
                 </section>
                 <section class='row'>
-                    <label for='zooLocation'>Location of Zoo: </label>
-                    <input type='text' id='zooLocation' name='zooLocation'>
+                    <label for='shopDescription'>Shop Description</label>
+                    <textarea name='shopDescription' id='shopDescription'></textarea>
                 </section>
-                <button>Add New Zoo</button>
+                <button>Add Shop</button>
             </form>
         </div>
     </div>
-    <footer>
-        
-    </footer>
 </body>
 </html>

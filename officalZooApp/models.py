@@ -23,4 +23,4 @@ class Employee(models.Model):
 class Shop(models.Model):
     shopName = models.CharField(max_length=45)
     shopDescription = models.CharField(max_length=255)
-    shopZoo = models.ManyToManyField(Zoo, related_name='zooShop')
+    zoos = models.ManyToManyField(Zoo, related_name='shops')
